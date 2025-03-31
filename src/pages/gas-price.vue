@@ -26,6 +26,14 @@
       oilPrices.value = data.filter((price) =>
         targetOilNames.includes(price.產品名稱)
       );
+      const gasPriceTool = tools.find((tool) => tool.route === '/gas-price');
+    if (gasPriceTool) {
+      oilPrices.value.forEach((price) => {
+        if (gasPriceTool.preview[price.產品名稱]) {
+          gasPriceTool.preview[price.產品名稱] = `${price.牌價} 元/公升`;
+        }
+      });
+    }
     } catch (error) {
       console.error('獲取油價失敗:', error);
     }

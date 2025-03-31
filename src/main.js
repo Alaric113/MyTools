@@ -10,7 +10,11 @@ import ToolLayout from './pages/ToolLayout.vue'; // 引入 ToolLayout
 let id = 0;
 
 export const tools = [
-  { id: id++, name: 'Gas price', route: '/gas-price' },
+  { id: id++, name: 'Gas price', route: '/gas-price' ,preview:{
+    '98無鉛汽油': '載入中...',
+    '95無鉛汽油': '載入中...',
+    '92無鉛汽油': '載入中...',
+  },},
   { id: id++, name: 'Parking Finder', route: '/parking-finder' },
 ];
 

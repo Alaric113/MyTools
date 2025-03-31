@@ -1,6 +1,11 @@
 <template>
     <div class="tool-card" @click="goToRoute">
       <h1>{{ toolName }}</h1>
+      <div v-if="preview">
+      <p v-for="(price, name) in preview" :key="name">
+        {{ name }}: {{ price }}
+      </p>
+    </div>
     </div>
   </template>
   
@@ -17,6 +22,7 @@
       type: String,
       required: true,
     },
+    preview: { type: Object, default: null },
   });
   
   const router = useRouter();

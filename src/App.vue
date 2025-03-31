@@ -14,6 +14,7 @@ const route = useRoute(); // 獲取當前路由
             :key="tool.id"      
             :toolName="tool.name" 
             :route="tool.route"
+            :preview="tool.preview"
           />
   </div>
   
