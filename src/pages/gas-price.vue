@@ -11,30 +11,7 @@
   </template>
   
   <script setup>
-  import { ref, onMounted } from 'vue';
-  import { tools } from '../main.js'; // 引入 tools
-  const oilPrices = ref([]);
+  import { oilPrices } from '../main.js'; // 引入 tools
   
-  onMounted(async () => {
-    try {
-      const response = await fetch(
-        'https://corsproxy.io/https://vipmbr.cpc.com.tw/openData/SixtypeOilListPrice'
-      );
-      const data = await response.json(); // Add .json() to parse the response
-      const targetOilNames = ['98無鉛汽油', '95無鉛汽油', '92無鉛汽油'];
-      oilPrices.value = data.filter((price) =>
-        targetOilNames.includes(price.產品名稱)
-      );
-      const gasPriceTool = tools.find((tool) => tool.route === '/gas-price');
-    if (gasPriceTool) {
-      oilPrices.value.forEach((price) => {
-        if (gasPriceTool.preview[price.產品名稱]) {
-          gasPriceTool.preview[price.產品名稱] = `${price.參考牌價} 元/公升`;
-        }
-      });
-    }
-    } catch (error) {
-      console.error('獲取油價失敗:', error);
-    }
-  });
+
   </script>
