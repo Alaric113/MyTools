@@ -10,7 +10,7 @@
   <script setup>
   import { useRouter } from 'vue-router';
   import { defineProps } from 'vue'; // 修改引入路徑
-  import oilPrice from '../components/oilPrice.vue';
+  import oilPrice from '../components/OilPrice.vue';
   
   const props = defineProps({
     toolName: {
@@ -27,8 +27,9 @@
   const router = useRouter();
   
   const goToRoute = () => {
-    router.push(`/${props.route.slice(1)}`);
-  };
+  // 使用命名路由而不是拼接路徑
+  router.push({ name: props.toolName.replace(/\s+/g, '-').toLowerCase() });
+};
   </script>
   
   <style scoped>
