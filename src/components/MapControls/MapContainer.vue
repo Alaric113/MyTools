@@ -3,9 +3,24 @@
   </template>
   
   <script setup>
-  import { ref, onMounted, onBeforeUnmount } from 'vue';
+  import { ref, onMounted, onBeforeUnmount, watch } from 'vue';
   import tt from '@tomtom-international/web-sdk-maps';
   import '@tomtom-international/web-sdk-maps/dist/maps.css';
+  import { services } from '@tomtom-international/web-sdk-services';
+
+  const emit =defineEmits([
+    'update:startAddress',
+    'update:endAddress',
+    'update:activeInput',
+  ])
+  
+  const props = defineProps({
+    activeInput: String,
+    startAddress: String,
+    endAddress: String,
+    route:Object,
+  });
+
   
   // 地圖配置常數
   const API_KEY = '9EKBnyQjcyZBnee9HAOKrOXCxltu2htL';
@@ -18,6 +33,47 @@
   // 地圖實例和容器引用
   const mapContainer = ref(null);
   const mapInstance = ref(null);
+
+  // 反向地理編碼函數 (獨立出來方便重用)
+  const reverseGeocode = async (point) => {
+    try {
+      const response = await services.reverseGeocode({
+        key: API_KEY,
+        position: `${point.lng},${point.lat}`,
+        language: 'zh-TW'
+      });
+      
+      return response.addresses?.[0]?.address?.freeformAddress || 
+            `位置 (${point.lng.toFixed(4)}, ${point.lat.toFixed(4)})`;
+    } catch (error) {
+      console.error('地理編碼失敗:', error);
+      return `位置 (${point.lng.toFixed(4)}, ${point.lat.toFixed(4)})`;
+    }
+  };
+
+  const handleMapClick = async (e) => {
+    if (!props.activeInput) return ;
+
+     // 清除選擇狀態
+    
+    const point = { lng: e.lngLat.lng, lat: e.lngLat.lat };
+    const address = await reverseGeocode(point);
+
+
+    if(props.activeInput === 'start'){
+      emit('update:startAddress', address);
+      emit('update:startPoint', point);
+
+    }else{
+      
+      emit('update:endAddress', address);
+      emit('update:endPoint', point);
+
+    }
+    emit('update:activeInput', null);
+    
+  };
+  
   
   // 初始化地圖
   onMounted(() => {
@@ -44,6 +100,7 @@
     onBeforeUnmount(() => {
       resizeObserver.disconnect();
     });
+    mapInstance.value.on('click', handleMapClick);
   });
   
   // 組件卸載時移除地圖
@@ -52,6 +109,56 @@
       mapInstance.value.remove();
     }
   });
+  const drawRoute = (routeData) => {
+  if (!mapInstance.value || !routeData) return;
+
+  // 清除舊路線
+  if (mapInstance.value.getLayer('route')) {
+    mapInstance.value.removeLayer('route');
+    mapInstance.value.removeSource('route');
+  }
+
+  // 轉換為 GeoJSON 格式
+  const routeGeoJSON = {
+    type: 'Feature',
+    geometry: {
+      type: 'LineString',
+      coordinates: routeData.legs[0].points.map(point => 
+        [point.longitude, point.latitude]
+      )
+    }
+  };
+
+  // 添加路線源
+  mapInstance.value.addSource('route', {
+    type: 'geojson',
+    data: routeGeoJSON
+  });
+
+  // 添加路線圖層
+  mapInstance.value.addLayer({
+    id: 'route',
+    type: 'line',
+    source: 'route',
+    paint: {
+      'line-color': '#1e90ff',
+      'line-width': 4
+    }
+  });
+
+  // 自動調整視圖
+  const bounds = new tt.LngLatBounds();
+  routeGeoJSON.geometry.coordinates.forEach(coord => {
+    bounds.extend(coord);
+  });
+  mapInstance.value.fitBounds(bounds, { padding: 50 });
+};
+
+// 監聽 route 變化
+watch(() => props.route, (newRoute) => {
+  drawRoute(newRoute);
+}, { deep: true });
+
   </script>
   
   <style scoped>

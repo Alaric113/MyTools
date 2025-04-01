@@ -3,15 +3,18 @@
       <div class="search-group">
         <label>出發地:</label>
         <input
-          
+          :value="startAddress"
           placeholder="輸入或點擊地圖選擇"
-        
+          @focus="setActiveInput('start')"
+         
         />
       </div>
       
       <div class="search-group">
         <label>目的地:</label>
         <input
+          :value="endAddress"
+          @focus="setActiveInput('end')"
           
           placeholder="輸入或點擊地圖選擇"
           
@@ -22,25 +25,18 @@
         正在選擇{{ activeInput === 'start' ? '出發地' : '目的地' }} - 請點擊地圖
       </div>
       
-      <div class="route-info" v-if="routeInfo.distance">
-        <div class="info-item">
-          <span class="label">距離:</span>
-          <span class="value">{{ routeInfo.distance }} km</span>
-        </div>
-        <div class="info-item">
-          <span class="label">時間:</span>
-          <span class="value">{{ routeInfo.duration }} 分鐘</span>
-        </div>
-        <div class="info-item">
-          <span class="label">預估油耗:</span>
-          <span class="value">{{ routeInfo.fuelConsumption }} 升</span>
-        </div>
-      </div>
+      <RouteInfo
+        ref="routeInfoRef"
+        v-show="hasRoute"
+        :startPoint="startPoint"
+        :endPoint="endPoint"
+        @calculate="emit('calculate')"
+      />
       
       <button 
         class="calculate-btn" 
-        @click="emit('calculate')"
-        :disabled="!startPoint || !endPoint || isLoading"
+        @click="handleCalculate"
+        :disabled="!startPoint || !endPoint || isLoading" 
       >
         <span v-if="!isLoading">計算路線</span>
         <span v-else>計算中...</span>
@@ -48,7 +44,7 @@
       
       <button 
         class="clear-btn" 
-        @click="emit('clear')"
+        @click="handleClear"
         :disabled="!hasRoute"
       >
         清除路線
@@ -57,37 +53,64 @@
   </template>
   
   <script setup>
-  import { ref, defineProps, defineEmits } from 'vue';
-  
-  const emit = defineEmits(['calculate', 'clear', 'update:activeInput']);
-  
-  const props = defineProps({
-    startAddress: String,
-    endAddress: String,
-    startPoint: Object,
-    endPoint: Object,
-    routeInfo: {
-      type: Object,
-      default: () => ({
-        distance: null,
-        duration: null,
-        fuelConsumption: null
-      })
-    },
-    isLoading: Boolean,
-    hasRoute: Boolean,
-    activeInput: String
-  });
-  
-  const setActiveInput = (type) => {
-    emit('update:activeInput', type);
-  };
-  
-  const onInputBlur = () => {
-    // 這裡保留原來的邏輯，但可以通過父組件處理
-    emit('update:activeInput', null);
-  };
-  </script>
+    import RouteInfo from './RouteInfo.vue';
+    import { ref, onMounted } from 'vue';
+    
+    const props = defineProps({
+      startAddress: String,
+      endAddress: String,
+      activeInput: String,
+      startPoint: Object,
+      endPoint: Object,
+      isLoading: Boolean
+    });
+    
+    const emit = defineEmits([
+      'update:activeInput',
+      'update:hasRoute',
+      'calculate',
+      'clear'
+    ]);
+    
+    const routeInfoRef = ref(null);
+    const hasRoute = ref(false);
+    
+    const setActiveInput = (type) => {
+      emit('update:activeInput', type);
+    };
+    
+    const handleCalculate = async () => {
+      if (!props.startPoint || !props.endPoint) return;
+      
+      emit('calculate', true); // 開始計算
+    
+      try {
+        
+        const success = await routeInfoRef.value.calculateRoute(
+          props.startPoint,
+          props.endPoint
+        );
+        
+        if (success.success){
+          hasRoute.value = success;
+          emit('update:hasRoute', success);
+          emit('update:route',success.route); // 更新路線資訊
+        }
+        
+      } catch (error) {
+        hasRoute.value = false;
+        emit('update:hasRoute', false);
+      } finally {
+        emit('calculate', false); // 結束計算
+      }
+    };
+    
+    const handleClear = () => {
+      hasRoute.value = false;
+      emit('update:hasRoute', false);
+      emit('clear');
+    };
+    </script>
   
   <style scoped>
   .floating-search-panel {
