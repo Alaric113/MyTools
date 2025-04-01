@@ -16,7 +16,7 @@
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
-import OilPrice from '../components/oilPrice.vue';
+import OilPrice from '../components/gas-price/oilPrice.vue';
 import tt from '@tomtom-international/web-sdk-maps';
 import '@tomtom-international/web-sdk-maps/dist/maps.css';
 import tt from '@tomtom-international/web-sdk-maps';

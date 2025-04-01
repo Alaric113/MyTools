@@ -10,7 +10,7 @@
   <script setup>
   import { useRouter } from 'vue-router';
   import { defineProps } from 'vue'; // 修改引入路徑
-  import oilPrice from '../components/oilPrice.vue';
+  import oilPrice from './gas-price/oilPrice.vue';
   
   const props = defineProps({
     toolName: {
