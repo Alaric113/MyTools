@@ -2,7 +2,6 @@
 import toolCard from './components/ToolCard.vue'
 import { tools} from './main.js'
 import { oilPrices } from './api.js'
-import oilPrice from './components/oilPrice.vue';
 
 import { useRoute } from 'vue-router'; // 引入 useRoute
 import { ref, onMounted, computed} from 'vue';
@@ -13,8 +12,9 @@ const route = useRoute(); // 獲取當前路由
 
 <template>
   <!-- 主布局 -->
-  <h1 class="app-title">小工具集</h1>
+  
   <div class="app-container">
+    <h1 class="app-title" v-if="route.path === '/'">小工具集</h1>
     <!-- 首頁顯示工具卡片 -->
     <div v-if="route.path === '/'" class="grid-container">
       <toolCard v-for="tool in tools" :key="tool.id" 
@@ -39,6 +39,11 @@ const route = useRoute(); // 獲取當前路由
 
 </style>
 <style scoped>
+  .app-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .grid-container{
     display: grid;
     grid-template-columns:repeat(2,1fr);

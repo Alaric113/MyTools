@@ -21,4 +21,10 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
+  optimizeDeps: {
+    include: [
+      '@tomtom-international/web-sdk-maps',
+      '@tomtom-international/web-sdk-services'
+    ]
+  }
 });

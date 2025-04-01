@@ -16,7 +16,7 @@
 
 <script setup>
 import ToolCard from '@/components/ToolCard.vue'
-import OilPrice from '@/components/OilPrice.vue'
+import OilPrice from '@/components/oilPrice.vue'
 
 const tools = [
   {

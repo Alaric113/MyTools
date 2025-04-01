@@ -29,7 +29,7 @@ function fw(productName){
   justify-content: center;
   align-items: center;
   border: 1px solid #ccc;
-  border-radius: 30px;
+  border-radius: 20px;
   padding: 5px;
 }
 .oiltype{
