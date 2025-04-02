@@ -115,7 +115,7 @@
   <style scoped>
   .floating-search-panel {
     position: absolute;
-    top: 80px;
+    top: 90px;
     left: 20px;
     z-index: 1000;
     background: rgba(255, 255, 255, 0.95);
@@ -232,10 +232,37 @@
   
   @media (max-width: 768px) {
     .floating-search-panel {
-      width: calc(100% - 40px);
-      top: 70px;
-      left: 20px;
-      right: 20px;
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
+    transform: translateY(0);
+    animation: slideUp 0.3s ease;
+  }
+
+  /* 添加拖拽手柄 */
+  .bottom-sheet::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 4px;
+    background: #ccc;
+    border-radius: 2px;
+    margin: 8px auto;
+  }
+
+  /* 滑入動畫 */
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%);
     }
+    to {
+      transform: translateY(0);
+    }
+  }
   }
   </style>
