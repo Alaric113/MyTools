@@ -12,6 +12,11 @@
       <span class="label">預估油耗:</span>
       <span class="value">{{ fuelConsumption }} 升</span>
     </div>
+    <div class="info-item">
+      <span class="label">預估價錢:</span>
+      <span class="value">{{ totalPrice }} 元
+      </span>
+    </div>
   </div>
 
 </template>
@@ -25,6 +30,9 @@ const API_KEY = '9EKBnyQjcyZBnee9HAOKrOXCxltu2htL';
 const distance = ref(null);
 const duration = ref(null);
 const fuelConsumption = ref(null);
+const totalPrice = ref(null);
+
+
 
 const calculateRoute = async (start, end) => {
   try {
@@ -41,7 +49,8 @@ const calculateRoute = async (start, end) => {
       const route = response.routes[0];
       distance.value = (route.summary.lengthInMeters / 1000).toFixed(1);
       duration.value = Math.round(route.summary.travelTimeInSeconds / 60);
-      fuelConsumption.value = (route.summary.lengthInMeters / 1000 * 0.08).toFixed(1);
+      fuelConsumption.value = (route.summary.lengthInMeters / 1000 /6).toFixed(1);
+      totalPrice.value = (fuelConsumption.value * 32.2).toFixed(1);
       return {
         success:true,
         route:route
