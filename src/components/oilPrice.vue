@@ -11,7 +11,8 @@
 </template>
 
 <script setup>
-import { oilPrices } from '@/api';
+import { oilPrices,fetchOilPrices } from '@/api';
+fetchOilPrices()
 function fw(productName){
     if (productName && productName.length >= 2) {
     return productName.substring(0, 2);

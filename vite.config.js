@@ -4,13 +4,16 @@ import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 import { VitePWA } from 'vite-plugin-pwa'
 
+// 动态获取基础路径
+const BASE_PATH = process.env.NODE_ENV === 'production' ? '/Mytools/' : '/'
+
 export default defineConfig({
   plugins: [
     vue(),
     vueDevTools(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.ico', 'apple-touch-icon.png'],
+      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'robots.txt'],
       manifest: {
         name: '油耗計算',
         short_name: '油耗計算',
@@ -18,19 +21,26 @@ export default defineConfig({
         theme_color: '#4CAF50',
         background_color: '#ffffff',
         display: 'standalone',
+        start_url: BASE_PATH,
+        scope: BASE_PATH,
+        includeManifest: true,
+        manifestFilename: 'manifest.json', // Force JSON filename
+        useCredentials: false,
+        injectRegister: 'auto',
+        strategies: 'generateSW',
         icons: [
           {
-            src: 'img/icons/android-chrome-192x192.png',
+            src: `${BASE_PATH}img/icons/android-chrome-192x192.png`,
             sizes: '192x192',
             type: 'image/png'
           },
           {
-            src: 'img/icons/android-chrome-512x512.png',
+            src: `${BASE_PATH}img/icons/android-chrome-512x512.png`,
             sizes: '512x512',
             type: 'image/png'
           },
           {
-            src: 'img/icons/android-chrome-512x512.png',
+            src: `${BASE_PATH}img/icons/android-chrome-512x512.png`,
             sizes: '512x512',
             type: 'image/png',
             purpose: 'maskable'
@@ -39,6 +49,8 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
+        globDirectory: 'dist',
+        navigateFallback: `${BASE_PATH}index.html`,
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/api\.tomtom\.com/,
@@ -53,11 +65,22 @@ export default defineConfig({
                 statuses: [0, 200]
               }
             }
+          },
+          {
+            urlPattern: /^https:\/\/vipmbr\.cpc\.com\.tw/,
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'cpc-oil-data',
+              expiration: {
+                maxAgeSeconds: 24 * 60 * 60 // 1天
+              }
+            }
           }
         ]
       },
       devOptions: {
-        enabled: false
+        enabled: false,
+        navigateFallbackAllowlist: [/^\/Mytools/]
       }
     })
   ],
@@ -81,5 +104,17 @@ export default defineConfig({
       '@tomtom-international/web-sdk-services'
     ]
   },
-  base: process.env.NODE_ENV === 'production' ? '/Mytool/' : '/'
+  base: BASE_PATH,
+  build: {
+    minify:false,
+    outDir: 'dist',
+    assetsDir: 'assets',
+    rollupOptions: {
+      output: {
+        assetFileNames: 'assets/[name]-[hash][extname]',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        entryFileNames: 'assets/[name]-[hash].js'
+      }
+    }
+  }
 })

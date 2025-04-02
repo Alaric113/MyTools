@@ -49,7 +49,7 @@ const calculateRoute = async (start, end) => {
       const route = response.routes[0];
       distance.value = (route.summary.lengthInMeters / 1000).toFixed(1);
       duration.value = Math.round(route.summary.travelTimeInSeconds / 60);
-      fuelConsumption.value = (route.summary.lengthInMeters / 1000 /6).toFixed(1);
+      fuelConsumption.value = (route.summary.lengthInMeters / 1000 /7).toFixed(1);
       totalPrice.value = (fuelConsumption.value * 32.2).toFixed(1);
       return {
         success:true,
