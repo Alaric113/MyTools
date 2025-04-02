@@ -1,4 +1,4 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/GasPrice-DJgF6Uik.js","assets/MapContainer-Cx7LTJW6.js","assets/MapContainer-BiqvHnA7.css","assets/GasPrice-VqriOHXD.css","assets/ParkingFinder-CufCz2AO.js","assets/ParkingFinder-CJQAGQ-J.css"])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/GasPrice-36a9LdXd.js","assets/MapContainer-CMOpiwtN.js","assets/MapContainer-BiqvHnA7.css","assets/GasPrice-VqriOHXD.css","assets/ParkingFinder-CjYsZvDp.js","assets/ParkingFinder-CJQAGQ-J.css"])))=>i.map(i=>d[i]);
 (function polyfill() {
   const relList = document.createElement("link").relList;
   if (relList && relList.supports && relList.supports("modulepreload")) {
@@ -8126,7 +8126,8 @@ function useRouter() {
 function useRoute(_name) {
   return inject(routeLocationKey);
 }
-const oilPrices = ref([])(async () => {
+const oilPrices = ref([]);
+async function fetchOilPrices() {
   try {
     const response = await fetch(
       "https://corsproxy.io/https://vipmbr.cpc.com.tw/openData/SixtypeOilListPrice"
@@ -8136,11 +8137,11 @@ const oilPrices = ref([])(async () => {
     oilPrices.value = data.filter(
       (price) => targetOilNames.includes(price.產品名稱)
     );
-    console.log(oilPrices);
+    console.log(oilPrices.value);
   } catch (error) {
     console.error("獲取油價失敗:", error);
   }
-})();
+}
 const _export_sfc = (sfc, props) => {
   const target = sfc.__vccOpts || sfc;
   for (const [key, val] of props) {
@@ -8153,6 +8154,7 @@ const _hoisted_2$1 = { key: 1 };
 const _sfc_main$2 = {
   __name: "oilPrice",
   setup(__props) {
+    fetchOilPrices();
     function fw(productName) {
       if (productName && productName.length >= 2) {
         return productName.substring(0, 2);
@@ -8175,7 +8177,7 @@ const _sfc_main$2 = {
     };
   }
 };
-const oilPrice = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-f8515b05"]]);
+const oilPrice = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-a1f77414"]]);
 const _hoisted_1$1 = { key: 0 };
 const _sfc_main$1 = {
   __name: "ToolCard",
@@ -8259,13 +8261,13 @@ const routes = [
   {
     path: "/gas-price",
     name: "gas-price",
-    component: () => __vitePreload(() => import("./GasPrice-DJgF6Uik.js"), true ? __vite__mapDeps([0,1,2,3]) : void 0),
+    component: () => __vitePreload(() => import("./GasPrice-36a9LdXd.js"), true ? __vite__mapDeps([0,1,2,3]) : void 0),
     meta: { preview: tools[0].preview }
   },
   {
     path: "/parking-finder",
     name: "parking-finder",
-    component: () => __vitePreload(() => import("./ParkingFinder-CufCz2AO.js"), true ? __vite__mapDeps([4,1,2,5]) : void 0)
+    component: () => __vitePreload(() => import("./ParkingFinder-CjYsZvDp.js"), true ? __vite__mapDeps([4,1,2,5]) : void 0)
   }
 ];
 const router = createRouter({

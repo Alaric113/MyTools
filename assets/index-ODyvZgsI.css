@@ -111,7 +111,7 @@ a,
   }
 }
 
-.oilContainer[data-v-f8515b05]{
+.oilContainer[data-v-a1f77414]{
   display: flex;
   flex-direction: row-reverse;
   justify-content: center;
@@ -120,11 +120,11 @@ a,
   border-radius: 20px;
   padding: 5px;
 }
-.oiltype[data-v-f8515b05]{
+.oiltype[data-v-a1f77414]{
   margin: 0 5px;
   text-align: center;
 }
-.oiltype h1[data-v-f8515b05]{
+.oiltype h1[data-v-a1f77414]{
     border-bottom: 1px solid #ccc;
 }
 
