@@ -1,5 +1,5 @@
 
-.finder-container[data-v-711651b7] {
+.finder-container[data-v-58a4a748] {
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -9,15 +9,16 @@
     overflow: hidden;
     position: relative;
 }
-.header[data-v-711651b7] {
+.header[data-v-58a4a748] {
   display: flex;
   align-items: center; /* 確保內容垂直居中 */
   padding: 1rem;
   position: relative;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   z-index: 10;
+  height: 3rem;
 }
-.back-button[data-v-711651b7] {
+.back-button[data-v-58a4a748] {
   background: none;
   border: none;
   padding: 8px;
@@ -29,14 +30,16 @@
   justify-content: center;
   border-radius: 50%;
   transition: all 0.2s ease;
+  position: absolute;
+  left: 5px;
 }
-.back-button[data-v-711651b7]:hover {
+.back-button[data-v-58a4a748]:hover {
   background-color: #f0f0f0;
 }
-.back-button svg[data-v-711651b7] {
+.back-button svg[data-v-58a4a748] {
   display: block;
 }
-h1[data-v-711651b7] {
+h1[data-v-58a4a748] {
   margin: 0;
   flex-grow: 1;
   text-align: center;

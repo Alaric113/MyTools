@@ -1,27 +1,27 @@
 
-.route-info[data-v-04bb468e] {
+.route-info[data-v-c5b06370] {
   margin-top: 12px;
   padding: 12px;
   background: #f5f5f5;
   border-radius: 6px;
 }
-.info-item[data-v-04bb468e] {
+.info-item[data-v-c5b06370] {
   display: flex;
   justify-content: space-between;
   margin-bottom: 6px;
 }
-.info-item[data-v-04bb468e]:last-child {
+.info-item[data-v-c5b06370]:last-child {
   margin-bottom: 0;
 }
-.label[data-v-04bb468e] {
+.label[data-v-c5b06370] {
   color: #666;
 }
-.value[data-v-04bb468e] {
+.value[data-v-c5b06370] {
   font-weight: bold;
   color:#444
 }
 
-.floating-search-panel[data-v-b1d38020] {
+.floating-search-panel[data-v-864f0769] {
   position: absolute;
   top: 90px;
   left: 20px;
@@ -35,29 +35,54 @@
   flex-direction: column;
   gap: 12px;
 }
-.search-group[data-v-b1d38020] {
+.search-group[data-v-864f0769] {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
-.search-group label[data-v-b1d38020] {
+.search-action[data-v-864f0769]{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.search-group label[data-v-864f0769] {
   font-size: 14px;
   font-weight: 500;
   color: #555;
 }
-.search-group input[data-v-b1d38020] {
+.search-group input[data-v-864f0769] {
   padding: 10px 12px;
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 14px;
   width: 100%;
 }
-.search-group input[data-v-b1d38020]:focus {
+.search-group input[data-v-864f0769]:focus {
   outline: none;
   border-color: #1e90ff;
   box-shadow: 0 0 0 2px rgba(30, 144, 255, 0.2);
 }
-.selection-hint[data-v-b1d38020] {
+.icon-button[data-v-864f0769] {
+    width: 35px;          /* 正方形寬度 */
+    height: 35px;         /* 高度等於寬度 */
+    border-radius: 8px;   /* 輕微圓角，完全直角可設 0 */
+    background: #ffffff;
+    border: 2px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+.icon-button[data-v-864f0769]:hover {
+    background: #f5f5f5;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+}
+.icon-button[data-v-864f0769]:active {
+    transform: scale(0.95);
+}
+.selection-hint[data-v-864f0769] {
   font-size: 13px;
   color: #1e90ff;
   text-align: center;
@@ -65,32 +90,32 @@
   background: rgba(30, 144, 255, 0.1);
   border-radius: 4px;
 }
-.route-info[data-v-b1d38020] {
+.route-info[data-v-864f0769] {
   margin-top: 12px;
   padding: 12px;
   background: #f5f5f5;
   border-radius: 6px;
 }
-.info-item[data-v-b1d38020] {
+.info-item[data-v-864f0769] {
   display: flex;
   justify-content: space-between;
   margin-bottom: 6px;
 }
-.info-item[data-v-b1d38020]:last-child {
+.info-item[data-v-864f0769]:last-child {
   margin-bottom: 0;
 }
-.label[data-v-b1d38020] {
+.label[data-v-864f0769] {
   color: #666;
 }
-.value[data-v-b1d38020] {
+.value[data-v-864f0769] {
   font-weight: bold;
 }
-.button-group[data-v-b1d38020] {
+.button-group[data-v-864f0769] {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
 }
-.calculate-btn[data-v-b1d38020] {
+.calculate-btn[data-v-864f0769] {
   padding: 10px;
   background-color: #4CAF50;
   color: white;
@@ -102,14 +127,14 @@
   transition: background-color 0.2s;
   flex: 1;
 }
-.calculate-btn[data-v-b1d38020]:hover {
+.calculate-btn[data-v-864f0769]:hover {
   background-color: #3d8b40;
 }
-.calculate-btn[data-v-b1d38020]:disabled {
+.calculate-btn[data-v-864f0769]:disabled {
   background-color: #cccccc;
   cursor: not-allowed;
 }
-.clear-btn[data-v-b1d38020] {
+.clear-btn[data-v-864f0769] {
   padding: 10px;
   background-color: #f44336;
   color: white;
@@ -121,15 +146,15 @@
   transition: background-color 0.2s;
   flex: 1;
 }
-.clear-btn[data-v-b1d38020]:hover {
+.clear-btn[data-v-864f0769]:hover {
   background-color: #d32f2f;
 }
-.clear-btn[data-v-b1d38020]:disabled {
+.clear-btn[data-v-864f0769]:disabled {
   background-color: #cccccc;
   cursor: not-allowed;
 }
 @media (max-width: 768px) {
-.floating-search-panel[data-v-b1d38020] {
+.floating-search-panel[data-v-864f0769] {
   position: fixed;
   top: auto;
   bottom: 0;
@@ -139,9 +164,9 @@
   border-radius: 16px 16px 0 0;
   box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
   transform: translateY(0);
-  animation: slideUp-b1d38020 0.3s ease;
+  animation: slideUp-864f0769 0.3s ease;
 }
-.button-group[data-v-b1d38020] {
+.button-group[data-v-864f0769] {
   display: flex;
   justify-content: space-around;
   margin-top: 16px;
@@ -150,7 +175,7 @@
 };
 
 /* 添加拖拽手柄 */
-.bottom-sheet[data-v-b1d38020]::before {
+.bottom-sheet[data-v-864f0769]::before {
   content: '';
   display: block;
   width: 40px;
@@ -161,7 +186,7 @@
 }
 
 /* 滑入動畫 */
-@keyframes slideUp-b1d38020 {
+@keyframes slideUp-864f0769 {
 from {
     transform: translateY(100%);
 }
@@ -171,7 +196,7 @@ to {
 }
 }
 
-.gas-price-container[data-v-ae549b0e] {
+.gas-price-container[data-v-80818d66] {
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -181,22 +206,22 @@ to {
     overflow: hidden;
     position: relative;
 }
-.header[data-v-ae549b0e] {
+.header[data-v-80818d66] {
     flex-shrink: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 1rem;
     position: relative;
-
+    height: 3rem;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     z-index: 10;
 }
-#oilPrice[data-v-ae549b0e]{
+#oilPrice[data-v-80818d66]{
     position: fixed;
     right: 1rem;
 }
-.header[data-v-ae549b0e] {
+.header[data-v-80818d66] {
   display: flex;
   align-items: center; /* 確保內容垂直居中 */
   padding: 1rem;
@@ -204,7 +229,7 @@ to {
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   z-index: 10;
 }
-.back-button[data-v-ae549b0e] {
+.back-button[data-v-80818d66] {
   background: none;
   border: none;
   padding: 8px;
@@ -216,22 +241,24 @@ to {
   justify-content: center;
   border-radius: 50%;
   transition: all 0.2s ease;
+  position: absolute;
+  left: 5px;
 }
-.back-button[data-v-ae549b0e]:hover {
+.back-button[data-v-80818d66]:hover {
   background-color: #f0f0f0;
 }
-.back-button svg[data-v-ae549b0e] {
+.back-button svg[data-v-80818d66] {
   display: block;
 }
 
 /* 調整油價顯示位置 */
-#oilPrice[data-v-ae549b0e] {
+#oilPrice[data-v-80818d66] {
   position: absolute;
   right: 1rem;
   top: 50%;
   transform: translateY(-50%);
 }
-h1[data-v-ae549b0e] {
+h1[data-v-80818d66] {
   margin: 0;
   flex-grow: 1;
   text-align: center;

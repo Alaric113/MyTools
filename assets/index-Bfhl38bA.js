@@ -1,4 +1,4 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/GasPrice-hISHFHkZ.js","assets/MapContainer-BXNKtuPf.js","assets/MapContainer-BiqvHnA7.css","assets/GasPrice-DhK2R6CI.css","assets/ParkingFinder-DO1m8TAK.js","assets/ParkingFinder-CJQAGQ-J.css"])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/GasPrice-DuYpVl9Y.js","assets/MapContainer-DaxyDfUw.js","assets/MapContainer-BiqvHnA7.css","assets/GasPrice-BsQPVe3D.css","assets/ParkingFinder-8D8ToczY.js","assets/ParkingFinder-PZohCiHL.css"])))=>i.map(i=>d[i]);
 (function polyfill() {
   const relList = document.createElement("link").relList;
   if (relList && relList.supports && relList.supports("modulepreload")) {
@@ -8137,7 +8137,6 @@ async function fetchOilPrices() {
     oilPrices.value = data.filter(
       (price) => targetOilNames.includes(price.產品名稱)
     );
-    console.log(oilPrices.value);
   } catch (error) {
     console.error("獲取油價失敗:", error);
   }
@@ -8243,7 +8242,7 @@ const _sfc_main = {
     };
   }
 };
-const App = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-131eb550"]]);
+const App = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-877eb654"]]);
 let id = 0;
 const tools = [
   { id: id++, name: "Gas price", route: "/gas-price", preview: {
@@ -8261,13 +8260,13 @@ const routes = [
   {
     path: "/gas-price",
     name: "gas-price",
-    component: () => __vitePreload(() => import("./GasPrice-hISHFHkZ.js"), true ? __vite__mapDeps([0,1,2,3]) : void 0),
+    component: () => __vitePreload(() => import("./GasPrice-DuYpVl9Y.js"), true ? __vite__mapDeps([0,1,2,3]) : void 0),
     meta: { preview: tools[0].preview }
   },
   {
     path: "/parking-finder",
     name: "parking-finder",
-    component: () => __vitePreload(() => import("./ParkingFinder-DO1m8TAK.js"), true ? __vite__mapDeps([4,1,2,5]) : void 0)
+    component: () => __vitePreload(() => import("./ParkingFinder-8D8ToczY.js"), true ? __vite__mapDeps([4,1,2,5]) : void 0)
   }
 ];
 const router = createRouter({
@@ -8280,17 +8279,19 @@ app.mount("#app");
 export {
   _export_sfc as _,
   createCommentVNode as a,
-  openBlock as b,
+  createBaseVNode as b,
   createElementBlock as c,
-  createBaseVNode as d,
+  defineComponent as d,
   createVNode as e,
   oilPrice as f,
   onMounted as g,
-  onBeforeUnmount as h,
-  watch as i,
-  oilPrices as o,
+  h,
+  onBeforeUnmount as i,
+  watch as j,
+  openBlock as o,
   ref as r,
   toDisplayString as t,
+  unref as u,
   vShow as v,
   withDirectives as w
 };
