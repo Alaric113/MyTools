@@ -1,5 +1,5 @@
-import { s as services_minExports, M as MapContainer } from "./MapContainer-CMOpiwtN.js";
-import { _ as _export_sfc, r as ref, c as createElementBlock, a as createCommentVNode, o as openBlock, b as createBaseVNode, t as toDisplayString, w as withDirectives, v as vShow, d as createVNode, e as oilPrice } from "./index-CeQXB7Tq.js";
+import { s as services_minExports, M as MapContainer } from "./MapContainer-DrsJKXBm.js";
+import { _ as _export_sfc, r as ref, o as oilPrices, c as createElementBlock, a as createCommentVNode, b as openBlock, d as createBaseVNode, t as toDisplayString, w as withDirectives, v as vShow, e as createVNode, f as oilPrice } from "./index-DfvFV5mz.js";
 const _hoisted_1$2 = {
   key: 0,
   class: "route-info"
@@ -20,6 +20,8 @@ const _sfc_main$2 = {
     const duration = ref(null);
     const fuelConsumption = ref(null);
     const totalPrice = ref(null);
+    const p98 = oilPrices.value[0].參考牌價;
+    console.log(p98);
     const calculateRoute = async (start, end) => {
       var _a;
       try {
@@ -34,8 +36,8 @@ const _sfc_main$2 = {
           const route = response.routes[0];
           distance.value = (route.summary.lengthInMeters / 1e3).toFixed(1);
           duration.value = Math.round(route.summary.travelTimeInSeconds / 60);
-          fuelConsumption.value = (route.summary.lengthInMeters / 1e3 / 6).toFixed(1);
-          totalPrice.value = (fuelConsumption.value * 32.2).toFixed(1);
+          fuelConsumption.value = (route.summary.lengthInMeters / 1e3 / 7).toFixed(1);
+          totalPrice.value = (fuelConsumption.value * p98).toFixed(1);
           return {
             success: true,
             route
@@ -70,7 +72,7 @@ const _sfc_main$2 = {
     };
   }
 };
-const RouteInfo = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-fb3d3037"]]);
+const RouteInfo = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-04bb468e"]]);
 const _hoisted_1$1 = { class: "floating-search-panel" };
 const _hoisted_2$1 = { class: "search-group" };
 const _hoisted_3 = ["value"];
