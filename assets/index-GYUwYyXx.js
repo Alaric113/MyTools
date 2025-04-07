@@ -1,4 +1,4 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/GasPrice-D-mF7eXS.js","assets/MapContainer-DrsJKXBm.js","assets/MapContainer-BiqvHnA7.css","assets/GasPrice-DhK2R6CI.css","assets/ParkingFinder-D6OvSb5T.js","assets/ParkingFinder-CJQAGQ-J.css"])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/GasPrice-hISHFHkZ.js","assets/MapContainer-BXNKtuPf.js","assets/MapContainer-BiqvHnA7.css","assets/GasPrice-DhK2R6CI.css","assets/ParkingFinder-DO1m8TAK.js","assets/ParkingFinder-CJQAGQ-J.css"])))=>i.map(i=>d[i]);
 (function polyfill() {
   const relList = document.createElement("link").relList;
   if (relList && relList.supports && relList.supports("modulepreload")) {
@@ -38,7 +38,7 @@ const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/GasPrice-D-mF7e
 })();
 const scriptRel = "modulepreload";
 const assetsURL = function(dep) {
-  return "/Mytools/" + dep;
+  return "/MyTools/" + dep;
 };
 const seen = {};
 const __vitePreload = function preload(baseModule, deps, importerUrl) {
@@ -8261,17 +8261,17 @@ const routes = [
   {
     path: "/gas-price",
     name: "gas-price",
-    component: () => __vitePreload(() => import("./GasPrice-D-mF7eXS.js"), true ? __vite__mapDeps([0,1,2,3]) : void 0),
+    component: () => __vitePreload(() => import("./GasPrice-hISHFHkZ.js"), true ? __vite__mapDeps([0,1,2,3]) : void 0),
     meta: { preview: tools[0].preview }
   },
   {
     path: "/parking-finder",
     name: "parking-finder",
-    component: () => __vitePreload(() => import("./ParkingFinder-D6OvSb5T.js"), true ? __vite__mapDeps([4,1,2,5]) : void 0)
+    component: () => __vitePreload(() => import("./ParkingFinder-DO1m8TAK.js"), true ? __vite__mapDeps([4,1,2,5]) : void 0)
   }
 ];
 const router = createRouter({
-  history: createWebHistory("/Mytools/"),
+  history: createWebHistory("/MyTools/"),
   routes
 });
 const app = createApp(App);
