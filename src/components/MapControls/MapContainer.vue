@@ -12,6 +12,7 @@
     'update:startAddress',
     'update:endAddress',
     'update:activeInput',
+    'update:center'
   ])
   
   const props = defineProps({
@@ -19,6 +20,7 @@
     startAddress: String,
     endAddress: String,
     route:Object,
+    center:Object
   });
 
   
@@ -33,6 +35,8 @@
   // 地圖實例和容器引用
   const mapContainer = ref(null);
   const mapInstance = ref(null);
+
+ 
 
   // 反向地理編碼函數 (獨立出來方便重用)
   const reverseGeocode = async (point) => {
@@ -85,6 +89,13 @@
       container: mapContainer.value,
       ...MAP_CONFIG
     });
+
+     // 在 onMounted 的地圖初始化代碼後添加：
+    mapInstance.value.on('moveend', () => {
+      const center = mapInstance.value.getCenter();
+      emit('update:center',center)
+    });
+
   
     // 添加基本控制項
     mapInstance.value.addControl(new tt.NavigationControl());

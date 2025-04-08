@@ -1,6 +1,8 @@
 import { ref } from 'vue';
 
 export const oilPrices = ref([]);
+export const parkingData = ref([]);
+
 
 export async function fetchOilPrices() {
   try {
@@ -44,14 +46,9 @@ export async function getParkingData(lat,lon){
             const data = await response.json();
             console.log('成功從 API 獲取數據');
             originalData = data;
-            const searchValue = document.getElementById('searchCards');
-            document.getElementsByClassName('loader')[0].style.display = 'none'
-
-            if (searchValue.value) {
-                return searchFilter(searchValue.value.trim());
-            } else {
-                return data;
-            }
+            parkingData.value = data;
+            return data;
+            
         }
     } catch (error) {
         console.error('Request failed:', error);

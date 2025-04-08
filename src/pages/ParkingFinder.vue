@@ -17,11 +17,17 @@
 
 <script setup>
 import MapContainer from '@/components/MapControls/MapContainer.vue';
-import { getParkingData } from '@/api';
+import { getParkingData, parkingData } from '@/api';
+import { ref } from 'vue';
+
+const center = ref()
+
 const handleBack = () => {
     // 返回上一頁的邏輯
     window.history.back();
   };
+
+console.log(getParkingData(121.2222,25.2222).data)
 </script>
 
 <style scoped>
