@@ -24,6 +24,7 @@
 <script setup>
 import { ref, defineExpose } from 'vue';
 import { services } from '@tomtom-international/web-sdk-services';
+import { oilPrices }  from '@/api';
 
 const API_KEY = '9EKBnyQjcyZBnee9HAOKrOXCxltu2htL';
 
@@ -31,6 +32,8 @@ const distance = ref(null);
 const duration = ref(null);
 const fuelConsumption = ref(null);
 const totalPrice = ref(null);
+
+const p98 = 32.3
 
 
 
@@ -50,7 +53,7 @@ const calculateRoute = async (start, end) => {
       distance.value = (route.summary.lengthInMeters / 1000).toFixed(1);
       duration.value = Math.round(route.summary.travelTimeInSeconds / 60);
       fuelConsumption.value = (route.summary.lengthInMeters / 1000 /7).toFixed(1);
-      totalPrice.value = (fuelConsumption.value * 32.2).toFixed(1);
+      totalPrice.value = (fuelConsumption.value * p98).toFixed(1);
       return {
         success:true,
         route:route

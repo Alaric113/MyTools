@@ -46,8 +46,9 @@ const route = useRoute(); // 獲取當前路由
   }
   .grid-container{
     display: grid;
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
     gap:16px;
     padding:16px;
+    grid-auto-flow: row;
   }
 </style>

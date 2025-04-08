@@ -2,23 +2,40 @@
   <div class="floating-search-panel">
     <div class="search-group">
       <label>出發地:</label>
+      <div class="search-action">
+        <button class="icon-button">
+        <Icon icon="mdi:map-marker"
+        @click = "setActiveInput('start')"
+        />
+      </button>
       <input
         :value="startAddress"
         placeholder="輸入或點擊地圖選擇"
-        @focus="setActiveInput('start')"
-       
+        disabled
+        readonly
       />
+      </div>
+      
+      
     </div>
     
     <div class="search-group">
       <label>目的地:</label>
+      <div class="search-action">
+        <button class="icon-button">
+        <Icon icon="mdi:map-marker"
+        @click = "setActiveInput('end')"
+        />
+      </button>
       <input
         :value="endAddress"
-        @focus="setActiveInput('end')"
-        
+        disabled
+        readonly
         placeholder="輸入或點擊地圖選擇"
         
       />
+      </div>
+      
     </div>
     
     <div class="selection-hint" v-if="activeInput">
@@ -57,6 +74,7 @@
 <script setup>
   import RouteInfo from './RouteInfo.vue';
   import { ref, onMounted } from 'vue';
+  import { Icon } from '@iconify/vue';
   
   const props = defineProps({
     startAddress: String,
@@ -135,6 +153,12 @@
   flex-direction: column;
   gap: 6px;
 }
+.search-action{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  
+}
 
 .search-group label {
   font-size: 14px;
@@ -155,6 +179,29 @@
   border-color: #1e90ff;
   box-shadow: 0 0 0 2px rgba(30, 144, 255, 0.2);
 }
+
+.icon-button {
+    width: 35px;          /* 正方形寬度 */
+    height: 35px;         /* 高度等於寬度 */
+    border-radius: 8px;   /* 輕微圓角，完全直角可設 0 */
+    background: #ffffff;
+    border: 2px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+
+  .icon-button:hover {
+    background: #f5f5f5;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+  }
+
+  .icon-button:active {
+    transform: scale(0.95);
+  }
 
 .selection-hint {
   font-size: 13px;

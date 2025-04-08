@@ -8,8 +8,9 @@
         </svg>
       </button>
       <h1>油耗計算</h1>
-      <oilPrice id="oilPrice" />
+      
     </div>
+    <oilPrice id="oilPrice" />
     <SearchPanel
       v-model:startAddress="startAddress"
       v-model:endAddress="endAddress"
@@ -98,7 +99,7 @@
     align-items: center;
     padding: 1rem;
     position: relative;
-
+    height: 3rem;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     z-index: 10;
   }
@@ -128,6 +129,8 @@
   justify-content: center;
   border-radius: 50%;
   transition: all 0.2s ease;
+  position: absolute;
+  left: 5px;
 }
 
 .back-button:hover {

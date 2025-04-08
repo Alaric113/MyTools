@@ -17,7 +17,7 @@
 
 <script setup>
 import MapContainer from '@/components/MapControls/MapContainer.vue';
-
+import { getParkingData } from '@/api';
 const handleBack = () => {
     // 返回上一頁的邏輯
     window.history.back();
@@ -43,6 +43,7 @@ const handleBack = () => {
   position: relative;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   z-index: 10;
+  height: 3rem;
 }
 
 .back-button {
@@ -57,6 +58,8 @@ const handleBack = () => {
   justify-content: center;
   border-radius: 50%;
   transition: all 0.2s ease;
+  position: absolute;
+  left: 5px;
 }
 
 .back-button:hover {

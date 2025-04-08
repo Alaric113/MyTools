@@ -5,7 +5,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 import { VitePWA } from 'vite-plugin-pwa'
 
 // 动态获取基础路径
-const BASE_PATH = process.env.NODE_ENV === 'production' ? '/Mytools/' : '/'
+const BASE_PATH = process.env.NODE_ENV === 'production' ? '/MyTools/' : '/'
 
 export default defineConfig({
   plugins: [
