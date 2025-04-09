@@ -1,4 +1,4 @@
-import { _ as _export_sfc, r as ref, g as onMounted, i as onBeforeUnmount, j as watch, c as createElementBlock, o as openBlock } from "./index-Bfhl38bA.js";
+import { _ as _export_sfc, r as ref, i as onMounted, j as onBeforeUnmount, k as watch, c as createElementBlock, o as openBlock } from "./index-D9lwtrx5.js";
 function getDefaultExportFromCjs(x) {
   return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default") ? x["default"] : x;
 }
@@ -22269,12 +22269,14 @@ const _sfc_main = {
     activeInput: String,
     startAddress: String,
     endAddress: String,
-    route: Object
+    route: Object,
+    center: Object
   },
   emits: [
     "update:startAddress",
     "update:endAddress",
-    "update:activeInput"
+    "update:activeInput",
+    "update:center"
   ],
   setup(__props, { emit: __emit }) {
     const emit = __emit;
@@ -22320,6 +22322,10 @@ const _sfc_main = {
         key: API_KEY,
         container: mapContainer.value,
         ...MAP_CONFIG
+      });
+      mapInstance.value.on("moveend", () => {
+        const center = mapInstance.value.getCenter();
+        emit("update:center", center);
       });
       mapInstance.value.addControl(new tt.NavigationControl());
       mapInstance.value.addControl(new tt.FullscreenControl());
@@ -22384,7 +22390,7 @@ const _sfc_main = {
     };
   }
 };
-const MapContainer = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-216c9ac4"]]);
+const MapContainer = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-00a2e513"]]);
 export {
   MapContainer as M,
   services_minExports as s

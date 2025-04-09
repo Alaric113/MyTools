@@ -1,4 +1,4 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/GasPrice-DuYpVl9Y.js","assets/MapContainer-DaxyDfUw.js","assets/MapContainer-BiqvHnA7.css","assets/GasPrice-BsQPVe3D.css","assets/ParkingFinder-8D8ToczY.js","assets/ParkingFinder-PZohCiHL.css"])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/GasPrice-D6sHhusR.js","assets/MapContainer-Cx8q-jp3.js","assets/MapContainer-BWYeDvyF.css","assets/GasPrice-BsQPVe3D.css","assets/ParkingFinder-vF3ma0vu.js","assets/ParkingFinder-D_UILcS9.css"])))=>i.map(i=>d[i]);
 (function polyfill() {
   const relList = document.createElement("link").relList;
   if (relList && relList.supports && relList.supports("modulepreload")) {
@@ -8127,6 +8127,7 @@ function useRoute(_name) {
   return inject(routeLocationKey);
 }
 const oilPrices = ref([]);
+const parkingData = ref([]);
 async function fetchOilPrices() {
   try {
     const response = await fetch(
@@ -8139,6 +8140,36 @@ async function fetchOilPrices() {
     );
   } catch (error) {
     console.error("獲取油價失敗:", error);
+  }
+}
+async function getParkingData(lat, lon) {
+  const proxyUrl = "https://corsproxy.io/";
+  const targetUrl = "https://Parking.pma.gov.taipei/MapAPI/GetAllPOIData";
+  const url = proxyUrl + targetUrl;
+  const payload = new URLSearchParams({
+    lon,
+    lat,
+    catagory: "car",
+    type: 1
+  });
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      body: payload
+    });
+    if (response.ok) {
+      const data = await response.json();
+      console.log("成功從 API 獲取數據");
+      originalData = data;
+      parkingData.value = data;
+      return data;
+    }
+  } catch (error) {
+    console.error("Request failed:", error);
+    return null;
   }
 }
 const _export_sfc = (sfc, props) => {
@@ -8260,13 +8291,13 @@ const routes = [
   {
     path: "/gas-price",
     name: "gas-price",
-    component: () => __vitePreload(() => import("./GasPrice-DuYpVl9Y.js"), true ? __vite__mapDeps([0,1,2,3]) : void 0),
+    component: () => __vitePreload(() => import("./GasPrice-D6sHhusR.js"), true ? __vite__mapDeps([0,1,2,3]) : void 0),
     meta: { preview: tools[0].preview }
   },
   {
     path: "/parking-finder",
     name: "parking-finder",
-    component: () => __vitePreload(() => import("./ParkingFinder-8D8ToczY.js"), true ? __vite__mapDeps([4,1,2,5]) : void 0)
+    component: () => __vitePreload(() => import("./ParkingFinder-vF3ma0vu.js"), true ? __vite__mapDeps([4,1,2,5]) : void 0)
   }
 ];
 const router = createRouter({
@@ -8284,10 +8315,11 @@ export {
   defineComponent as d,
   createVNode as e,
   oilPrice as f,
-  onMounted as g,
+  getParkingData as g,
   h,
-  onBeforeUnmount as i,
-  watch as j,
+  onMounted as i,
+  onBeforeUnmount as j,
+  watch as k,
   openBlock as o,
   ref as r,
   toDisplayString as t,

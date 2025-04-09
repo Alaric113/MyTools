@@ -1,5 +1,5 @@
 
-.finder-container[data-v-58a4a748] {
+.finder-container[data-v-0e29f05d] {
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -9,7 +9,7 @@
     overflow: hidden;
     position: relative;
 }
-.header[data-v-58a4a748] {
+.header[data-v-0e29f05d] {
   display: flex;
   align-items: center; /* 確保內容垂直居中 */
   padding: 1rem;
@@ -18,7 +18,7 @@
   z-index: 10;
   height: 3rem;
 }
-.back-button[data-v-58a4a748] {
+.back-button[data-v-0e29f05d] {
   background: none;
   border: none;
   padding: 8px;
@@ -33,13 +33,13 @@
   position: absolute;
   left: 5px;
 }
-.back-button[data-v-58a4a748]:hover {
+.back-button[data-v-0e29f05d]:hover {
   background-color: #f0f0f0;
 }
-.back-button svg[data-v-58a4a748] {
+.back-button svg[data-v-0e29f05d] {
   display: block;
 }
-h1[data-v-58a4a748] {
+h1[data-v-0e29f05d] {
   margin: 0;
   flex-grow: 1;
   text-align: center;
