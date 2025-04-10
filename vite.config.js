@@ -26,6 +26,7 @@ export default defineConfig({
         includeManifest: true,
         manifestFilename: 'manifest.json', // Force JSON filename
         useCredentials: false,
+        appleMobileWebAppCapable: 'yes',
         injectRegister: 'auto',
         strategies: 'generateSW',
         icons: [
